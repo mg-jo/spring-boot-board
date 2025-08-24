@@ -1,0 +1,38 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.5'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.mysite'
+version = '0.0.1-SNAPSHOT'
+description = 'sbb project for Spring Boot'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web' // 라이브러리 설치
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools' // 개발 환경에만 해당 라이브러리가 적용됨
+	compileOnly 'org.projectlombok:lombok' // 컴파일 단계에서만
+	annotationProcessor 'org.projectlombok:lombok' // 컴파일 단계에서 애너테이션을 분석하고 처리할 때
+	runtimeOnly 'com.h2database:h2' // 런타임 시에만
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	testImplementation 'org.junit.jupiter:junit-jupiter'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // 테스트 실행 시에만
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+	implementation 'org.springframework.boot:spring-boot-starter-validation' // 사용자로부터 입력받은 값 검증
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
